@@ -82,7 +82,7 @@
     </target>
 
     <target name="DummySystemCoreJar">
-        <exec program="javac" commandline="-implicit:none ExtensionAttribute.java" useruntimeengine="false" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/javac" commandline="-implicit:none ExtensionAttribute.java" useruntimeengine="false" />
         <zip zipfile="System.Core.jar">
             <fileset prefix="cli/System/Runtime/CompilerServices">
                 <include name="ExtensionAttribute.class" />
@@ -176,7 +176,7 @@
     </target>
 
     <target name="classes" depends="clean-classes stubjars allsources.gen.lst AssemblyInfo.java PropertyConstants.java">
-        <exec program="javac" useruntimeengine="false">
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/javac" useruntimeengine="false">
             <arg value="-J-Xmx1536M" />
             <arg value="-g" />
             <arg value="-nowarn" />
@@ -201,21 +201,21 @@
         <property name="VMARGS" value="-J-client -J-Xmx896m -J-Xms128m" />
         <property name="OUTPUT" value="rmistubs" />
         <property name="ARGS" value="${VMARGS} -nowarn -bootclasspath ${CLASSPATH} -d ${OUTPUT}" />
-        <exec program="rmic" commandline="${ARGS} -v1.1 sun.rmi.registry.RegistryImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.1 sun.rmi.transport.DGCImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 sun.rmi.server.Activation$ActivationSystemImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 java.rmi.activation.ActivationGroup" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 com.sun.jndi.rmi.registry.ReferenceWrapper" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 javax.management.remote.rmi.RMIConnectionImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 -iiop javax.management.remote.rmi.RMIConnectionImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 -iiop -standardPackage javax.management.remote.rmi.RMIConnectionImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 javax.management.remote.rmi.RMIServerImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 -iiop javax.management.remote.rmi.RMIServerImpl" />
-        <exec program="rmic" commandline="${ARGS} -v1.2 -iiop -standardPackage javax.management.remote.rmi.RMIServerImpl" />
-        <exec program="rmic" commandline="${ARGS} -iiop javax.management.remote.rmi.RMIConnection" />
-        <exec program="rmic" commandline="${ARGS} -iiop -standardPackage javax.management.remote.rmi.RMIConnection" />
-        <exec program="rmic" commandline="${ARGS} -iiop javax.management.remote.rmi.RMIServer" />
-        <exec program="rmic" commandline="${ARGS} -iiop -standardPackage javax.management.remote.rmi.RMIServer" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.1 sun.rmi.registry.RegistryImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.1 sun.rmi.transport.DGCImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 sun.rmi.server.Activation$ActivationSystemImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 java.rmi.activation.ActivationGroup" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 com.sun.jndi.rmi.registry.ReferenceWrapper" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 javax.management.remote.rmi.RMIConnectionImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 -iiop javax.management.remote.rmi.RMIConnectionImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 -iiop -standardPackage javax.management.remote.rmi.RMIConnectionImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 javax.management.remote.rmi.RMIServerImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 -iiop javax.management.remote.rmi.RMIServerImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -v1.2 -iiop -standardPackage javax.management.remote.rmi.RMIServerImpl" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -iiop javax.management.remote.rmi.RMIConnection" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -iiop -standardPackage javax.management.remote.rmi.RMIConnection" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -iiop javax.management.remote.rmi.RMIServer" />
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/rmic" commandline="${ARGS} -iiop -standardPackage javax.management.remote.rmi.RMIServer" />
     </target>
 
     <target name="run-nasgen" depends="classpath">
@@ -231,7 +231,7 @@
                 <property name="nasgen-sources" value="${nasgen-sources} ${nasgen-src-file}" />
             </do>
         </foreach>
-        <exec program="javac" useruntimeengine="false">
+        <exec program="${environment::get-variable('JDK1.8_HOME')}/bin/javac" useruntimeengine="false">
             <arg value="-XDignore.symbol.file" />
             <arg value="-g" />
             <arg value="-nowarn" />
