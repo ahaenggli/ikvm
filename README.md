@@ -17,11 +17,12 @@ From [stackoverflow](https://stackoverflow.com/questions/8605122/how-do-i-resolv
 > under the General tab, click the button labelled Unblock, the click OK on the
 > Properties window.  Now, extract the file to your desired location.
 
-- Must be set to use JDK 8.
+- Must be set to use JDK 8. (https://www.oracle.com/java/technologies/javase-jdk8-downloads.html)  
+- Set environment variable `JDK1.8_HOME` to your JDK8 installation.
 
-- Download ICSharpCode.SharpZipLib.dll (http://www.icsharpcode.net/opensource/sharpziplib/) and copy to the bin folder.
+- Download ICSharpCode.SharpZipLib.dll (https://github.com/icsharpcode/SharpZipLib/releases) and copy to the bin folder. (the nupkg package contains the dll) 
 
-- Download openjdk-8u45-b14 (http://www.frijters.net/openjdk-8u45-b14-stripped.zip) and unpack in the peer folder to ikvm.
+- Download openjdk-8u45-b14 (http://www.frijters.net/openjdk-8u45-b14-stripped.zip) and unpack in the peer folder to ikvm. (same level as your ikvm folder - not inside!) 
 
 - In the root folder run nant.
 
@@ -44,7 +45,6 @@ And run nant
 ```nant signed```
 
 ## Package NuGet
-
 - build a signed version of the project
 - from the nuget directory run these commands
 - nant IKVM.nuspec
@@ -57,3 +57,12 @@ nuget.exe setApiKey <api key here>
 ````
 nuget.exe push IKVM.WINDWARD.8.5.0.2.nupkg -Source https://api.nuget.org/v3/index.json
 ````
+
+## Errors 
+If a newer JDK version is installed (maybe parallel?) the following errors may occur
+- [exec] error: option --boot-class-path not allowed with target 14  
+- External Program Failed: rmic (return code was 1)  
+
+solution: `javac` and `rmic` have to be called within JDK 8 (fixed with commit 1c3bad9 )
+
+
