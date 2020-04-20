@@ -28,6 +28,7 @@
         <!-- HACK this is pretty lame hack to guess if we're about to run the x64 version of CL.EXE -->
         <property name="cpu-arch" value="x64" if="${string::contains(string::to-lower(environment::get-variable('PATH')), 'vc\bin\amd64')}" />
         <property name="cpu-arch" value="x64" if="${string::contains(string::to-lower(environment::get-variable('PATH')), 'vc\bin\x86_amd64')}" />
+        <property name="cpu-arch" value="x64" if="${string::contains(string::to-lower(environment::get-variable('PATH')), 'msvc\14.25.28610\bin\hostx64\x64')}" />
     </target>
     <target name="version" depends="arch">
         <property name="VERSION" value="${assemblyname::get-version(assemblyname::get-assembly-name(path::combine(project::get-base-directory(), '../bin/IKVM.Runtime.dll')))}" />
@@ -45,7 +46,7 @@
         <if test="${platform::is-unix()}">
             <call target="ikvm-native-unix"/>
         </if>
-        <if test="${platform::is-win32()}">
+        <if test="${platform::is-windows()}">
             <call target="ikvm-native-win32"/>
         </if>
     </target>
